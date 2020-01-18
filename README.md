@@ -37,11 +37,11 @@ with the request body (example):
 {
 	"doctor_id": 1,
 	"date": "1-1-2020",
+    "datetime": "1-1-2020 09:15:00",
 	"firstName": "Tony",
 	"lastName": "Montana",
-	"datetimetime": "1-1-2020 09:15:00",
 	"kind": "New Patient"
 }
 ```
 
-P.S. date field on appointments is redundant and was used for testing
+// TO:DO date field on appointments is redundant and should be replaced with datetime, eventually
