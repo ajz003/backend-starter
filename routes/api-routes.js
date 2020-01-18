@@ -5,8 +5,10 @@
 // Dependencies
 // =============================================================
 
-// Requiring our Todo model
+// Requiring our model
 var db = require("../models");
+
+var moment = require('moment');
 
 // Routes
 // =============================================================
@@ -44,22 +46,32 @@ module.exports = function (app) {
       }
     })
       .then(function (dbAppointment) {
-        if (dbAppointment.length <= 2) {
-          db.Appointment.create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            date: req.body.date,
-            time: req.body.time,
-            kind: req.body.kind,
-            doctor_id: req.body.doctor_id
-          })
-            .then(function (dbAppointment) {
-              res.json(dbAppointment);
-            });
-        } else {
-          res.send("Already 3 appointments at this time slot!")
-        }
+        var timeValidator = moment(req.body.time).minutes()
 
+        if (timeValidator === 00 ||
+          timeValidator === 15 ||
+          timeValidator === 30 ||
+          timeValidator === 45 ||
+          timeValidator === 60) {
+
+          if (dbAppointment.length <= 2) {
+            db.Appointment.create({
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+              date: req.body.date,
+              time: req.body.time,
+              kind: req.body.kind,
+              doctor_id: req.body.doctor_id
+            })
+              .then(function (dbAppointment) {
+                res.json(dbAppointment);
+              });
+          } else {
+            res.send("Already 3 appointments at this time slot!")
+          }
+        } else {
+          res.send("Only appointments every 15 minutes are availalble!")
+        }
       });
 
   });
