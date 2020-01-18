@@ -47,24 +47,24 @@ db.sequelize.sync({ force: true }).then(function () {
     firstName: "Tony",
     lastName: "Hawk",
     date: "01-01-2020",
-    time: "01-01-2020 09:15:00",
+    datetime: "01-01-2020 09:15:00",
     kind: "New Patient",
     doctor_id: 1
   })
-  // db.Appointment.create({
-  //   firstName: "Toni",
-  //   lastName: "Hawke",
-  //   date: "01-01-2020",
-  //   time: "09",
-  //   kind: "New Patient",
-  //   doctor_id: 1
-  // })
-  // db.Appointment.create({
-  //   firstName: "Jack",
-  //   lastName: "Black",
-  //   date: "01-01-2020",
-  //   time: "09:30",
-  //   kind: "New Patient",
-  //   doctor_id: 2
-  // })
+  db.Appointment.create({
+    firstName: "Toni",
+    lastName: "Hawke",
+    date: "01-01-2020",
+    datetime: "01-01-2020 09:30:00",
+    kind: "New Patient",
+    doctor_id: 1
+  })
+  db.Appointment.create({
+    firstName: "Jack",
+    lastName: "Black",
+    date: "01-01-2020",
+    datetime: "01-01-2020 09:45:00",
+    kind: "New Patient",
+    doctor_id: 2
+  })
 });

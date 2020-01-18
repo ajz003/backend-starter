@@ -42,11 +42,12 @@ module.exports = function (app) {
       where: {
         doctor_id: req.body.doctor_id,
         date: req.body.date,
-        time: req.body.time
+        datetime: req.body.datetime
       }
     })
       .then(function (dbAppointment) {
-        var timeValidator = moment(req.body.time).minutes()
+        var timeValidator = moment(req.body.datetime).minutes()
+        console.log(timeValidator)
 
         if (timeValidator === 00 ||
           timeValidator === 15 ||
@@ -59,7 +60,7 @@ module.exports = function (app) {
               firstName: req.body.firstName,
               lastName: req.body.lastName,
               date: req.body.date,
-              time: req.body.time,
+              datetime: req.body.datetime,
               kind: req.body.kind,
               doctor_id: req.body.doctor_id
             })
